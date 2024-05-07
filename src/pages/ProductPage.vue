@@ -65,6 +65,17 @@
           </q-card-actions>
         </q-card>
       </q-dialog>
+      <!-- Rating component -->
+      <q-rating
+        v-model="card.rating"
+        max="7"
+        size="3em"
+        color="yellow"
+        icon="star_border"
+        icon-selected="star"
+        icon-half="star_half"
+        no-dimming
+      />
     </q-card>
   </div>
 </template>
@@ -84,6 +95,7 @@ const cards = ref([
     backdropFilter: null,
     dialogTitle: "Dialog Title 1",
     dialogContent: "Dialog content for card 1",
+    rating: 0, // Initial rating value
   },
   {
     image: "img/product_2.jpg",
@@ -96,6 +108,7 @@ const cards = ref([
     backdropFilter: null,
     dialogTitle: "Dialog Title 2",
     dialogContent: "Dialog content for card 2",
+    rating: 0, // Initial rating value
   },
   {
     image: "img/product_3.jpg",
@@ -108,6 +121,7 @@ const cards = ref([
     backdropFilter: null,
     dialogTitle: "Dialog Title 3",
     dialogContent: "Dialog content for card 3",
+    rating: 0, // Initial rating value
   },
   {
     image: "img/product_4.jpg",
@@ -119,6 +133,7 @@ const cards = ref([
     backdropFilter: null,
     dialogTitle: "Dialog Title 4",
     dialogContent: "Dialog content for card 4",
+    rating: 0, // Initial rating value
   },
   {
     image: "img/product_5.jpg",
@@ -131,6 +146,7 @@ const cards = ref([
     backdropFilter: null,
     dialogTitle: "Dialog Title 5",
     dialogContent: "Dialog content for card 5",
+    rating: 0, // Initial rating value
   },
 ]);
 
