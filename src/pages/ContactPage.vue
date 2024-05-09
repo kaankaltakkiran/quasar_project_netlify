@@ -47,6 +47,18 @@
                     class="my-picker"
                   />
                 </div>
+                <div class="q-pa-md">
+                  <span class="text-h6 text-red">Pick a date:</span>
+                  <div class="q-gutter-md">
+                    <q-date
+                      v-model="date"
+                      :events="events"
+                      :event-color="
+                        (date) => (date[9] % 2 === 0 ? 'teal' : 'orange')
+                      "
+                    />
+                  </div>
+                </div>
                 <div class="row justify-center">
                   <q-btn
                     type="submit"
@@ -98,7 +110,29 @@ function simulateSubmit() {
     submitting.value = false;
   }, 3000);
 }
+const date = ref("2019/02/01");
+const events = [
+  "2019/02/01",
+  "2019/02/05",
+  "2019/02/06",
+  "2019/02/09",
+  "2019/02/23",
+];
+
+const eventsFn = (date) => {
+  if (
+    date === "2019/02/01" ||
+    date === "2019/02/05" ||
+    date === "2019/02/06" ||
+    date === "2019/02/09" ||
+    date === "2019/02/23"
+  ) {
+    return true;
+  }
+  return false;
+};
 </script>
+
 <style scoped>
 .my-picker {
   width: 100%;
