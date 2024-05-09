@@ -114,6 +114,7 @@
       <div class="col-12 col-md-4">
         <div class="q-pa-md" style="max-width: 400px">
           <q-chat-message
+            class="text-positive text-h6"
             name="Web Site Sahibi"
             avatar="https://cdn.quasar.dev/img/avatar1.jpg"
             :text="['Merhaba Jane, Web sitemizi nasıl buldunuz?']"
@@ -122,6 +123,7 @@
             bg-color="amber-7"
           />
           <q-chat-message
+            class="text-accent text-h6"
             name="Jane"
             avatar="https://cdn.quasar.dev/img/avatar5.jpg"
             :text="['Oldukça güzel, teşekkür ederim.']"
@@ -135,14 +137,16 @@
       <div class="col-12 col-md-4">
         <div class="q-pa-md" style="max-width: 400px">
           <q-chat-message
+            class="text-positive text-h6"
             name="Web Site Sahibi"
             avatar="https://cdn.quasar.dev/img/avatar1.jpg"
-            :text="['']"
+            :text="['Merhaba Julie, Web sitemizi nasıl buldunuz?']"
             stamp="3 minutes ago"
             sent
             bg-color="amber-7"
           />
           <q-chat-message
+            class="text-accent text-h6"
             name="Julie"
             avatar="https://cdn.quasar.dev/img/avatar5.jpg"
             :text="['Ben de aynı fikirdeyim.']"
@@ -156,14 +160,16 @@
       <div class="col-12 col-md-4">
         <div class="q-pa-md" style="max-width: 400px">
           <q-chat-message
+            class="text-positive text-h6"
             name="Web Site Sahibi"
             avatar="https://cdn.quasar.dev/img/avatar1.jpg"
-            :text="['Web sitemizi nasıl buldunuz?']"
+            :text="['Merhaba Julian, Web sitemizi nasıl buldunuz?']"
             stamp="7 minutes ago"
             sent
             bg-color="amber-7"
           />
           <q-chat-message
+            class="text-accent text-h6"
             name="Julian"
             avatar="https://cdn.quasar.dev/img/avatar5.jpg"
             :text="['Daha iyisi olamazdı. Teşekkür ederim.']"
