@@ -109,6 +109,71 @@
         </div>
       </div>
     </div>
+    <h3 class="text-center text-h4 text-red">Başlıca Site Yorumları</h3>
+    <div class="row q-col-gutter-md">
+      <div class="col-12 col-md-4">
+        <div class="q-pa-md" style="max-width: 400px">
+          <q-chat-message
+            name="Web Site Sahibi"
+            avatar="https://cdn.quasar.dev/img/avatar1.jpg"
+            :text="['Merhaba Jane, Web sitemizi nasıl buldunuz?']"
+            stamp="7 minutes ago"
+            sent
+            bg-color="amber-7"
+          />
+          <q-chat-message
+            name="Jane"
+            avatar="https://cdn.quasar.dev/img/avatar5.jpg"
+            :text="['Oldukça güzel, teşekkür ederim.']"
+            stamp="4 minutes ago"
+            text-color="white"
+            bg-color="primary"
+          />
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="q-pa-md" style="max-width: 400px">
+          <q-chat-message
+            name="Web Site Sahibi"
+            avatar="https://cdn.quasar.dev/img/avatar1.jpg"
+            :text="['']"
+            stamp="3 minutes ago"
+            sent
+            bg-color="amber-7"
+          />
+          <q-chat-message
+            name="Julie"
+            avatar="https://cdn.quasar.dev/img/avatar5.jpg"
+            :text="['Ben de aynı fikirdeyim.']"
+            stamp="1 minutes ago"
+            text-color="white"
+            bg-color="primary"
+          />
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="q-pa-md" style="max-width: 400px">
+          <q-chat-message
+            name="Web Site Sahibi"
+            avatar="https://cdn.quasar.dev/img/avatar1.jpg"
+            :text="['Web sitemizi nasıl buldunuz?']"
+            stamp="7 minutes ago"
+            sent
+            bg-color="amber-7"
+          />
+          <q-chat-message
+            name="Jhon"
+            avatar="https://cdn.quasar.dev/img/avatar5.jpg"
+            :text="['Daha iyisi olamazdı. Teşekkür ederim.']"
+            stamp="4 minutes ago"
+            text-color="white"
+            bg-color="primary"
+          />
+        </div>
+      </div>
+    </div>
 
     <div class="q-pa-md">
       <q-carousel
