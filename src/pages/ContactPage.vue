@@ -27,6 +27,26 @@
                     />
                   </div>
                 </div>
+                <div class="q-pa-md">
+                  <span class="text-h6 text-red">Pick a color:</span>
+                  <q-badge color="grey-3" text-color="black" class="q-mb-sm">
+                    {{ hex }}
+                  </q-badge>
+
+                  <q-color
+                    v-model="hex"
+                    default-view="palette"
+                    :palette="[
+                      '#019A9D',
+                      '#D9B801',
+                      '#E8045A',
+                      '#B2028A',
+                      '#2A0449',
+                      '#019A9D',
+                    ]"
+                    class="my-picker"
+                  />
+                </div>
                 <div class="row justify-center">
                   <q-btn
                     type="submit"
@@ -59,6 +79,8 @@
 import { ref } from "vue";
 import MyMap from "components/MyMap.vue";
 
+const hex = ref("#019A9D");
+
 const customModel = ref("no");
 const submitting = ref(false);
 
@@ -77,3 +99,8 @@ function simulateSubmit() {
   }, 3000);
 }
 </script>
+<style scoped>
+.my-picker {
+  width: 100%;
+}
+</style>
