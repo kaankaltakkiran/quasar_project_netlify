@@ -83,6 +83,9 @@
 <script setup>
 import { ref } from "vue";
 const labelName = ref("Detaylı Bİlgi");
+defineOptions({
+  name: "ProductPage",
+});
 const cards = ref([
   {
     image: "img/product_1.jpg",

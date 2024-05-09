@@ -8,6 +8,7 @@
           <q-route-tab to="/" exact name="anasayfa" label="Anasayfa" />
           <q-route-tab to="/prodcuts" exact name="ürünler" label="Ürünler" />
           <q-route-tab to="/contact" exact name="iletişim" label="İletişim" />
+          <q-route-tab to="/deneme" exact name="deneme" label="Deneme" />
         </q-tabs>
       </q-toolbar>
     </div>
