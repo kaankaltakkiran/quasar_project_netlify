@@ -164,7 +164,7 @@
             bg-color="amber-7"
           />
           <q-chat-message
-            name="Jhon"
+            name="Julian"
             avatar="https://cdn.quasar.dev/img/avatar5.jpg"
             :text="['Daha iyisi olamazdı. Teşekkür ederim.']"
             stamp="4 minutes ago"
