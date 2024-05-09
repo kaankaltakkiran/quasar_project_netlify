@@ -12,16 +12,25 @@
           <div class="q-col col-6">
             <div class="q-pa-md q-mx-auto" style="max-width: 600px">
               <h2 class="text-center text-blue">Contact Page</h2>
-              <q-form @submit="submitForm">
+              <q-form @submit.prevent="simulateSubmit">
                 <q-input v-model="name" label="Name" />
                 <q-input v-model="email" label="Email" type="email" />
                 <q-input v-model="message" label="Message" type="textarea" />
-                <q-btn
-                  class="q-mt-md"
-                  type="submit"
-                  label="Submit"
-                  color="primary"
-                />
+                <div class="row justify-center">
+                  <q-btn
+                    type="submit"
+                    :loading="submitting"
+                    label="Send Form"
+                    class="q-mt-md"
+                    color="teal"
+                    icon-right="send"
+                    size="md"
+                  >
+                    <template v-slot:loading>
+                      <q-spinner-facebook />
+                    </template>
+                  </q-btn>
+                </div>
               </q-form>
               <p class="q-mt-md text-secondary text-h6">
                 Donanmacı, Otopark, 35580 Karşıyaka/İzmir
@@ -39,6 +48,9 @@
 import { ref } from "vue";
 import MyMap from "components/MyMap.vue";
 
+const test = ref("");
+const submitting = ref(false);
+
 const name = ref("");
 const email = ref("");
 const message = ref("");
@@ -46,8 +58,11 @@ const message = ref("");
 defineOptions({
   name: "ContactPage",
 });
-const submitForm = () => {
-  // Form submission logic here
-  console.log("Form submitted");
-};
+function simulateSubmit() {
+  submitting.value = true;
+
+  setTimeout(() => {
+    submitting.value = false;
+  }, 3000);
+}
 </script>
