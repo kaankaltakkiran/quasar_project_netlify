@@ -14,6 +14,14 @@
     </div>
     <AppFooter />
     <q-page-container>
+      <!-- place QPageScroller at end of page -->
+      <q-page-scroller
+        position="bottom-right"
+        :scroll-offset="150"
+        :offset="[18, 18]"
+      >
+        <q-btn fab icon="keyboard_arrow_up" color="accent" />
+      </q-page-scroller>
       <keep-alive>
         <router-view />
       </keep-alive>
@@ -29,3 +37,13 @@ defineOptions({
   name: "MainLayout",
 });
 </script>
+
+<style scoped>
+.q-page-scroller {
+  /* İsteğe bağlı: Sayfanın altından ne kadar yukarıda olmasını istiyorsanız ayarlayabilirsiniz */
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+}
+</style>
