@@ -16,6 +16,17 @@
                 <q-input v-model="name" label="Name" />
                 <q-input v-model="email" label="Email" type="email" />
                 <q-input v-model="message" label="Message" type="textarea" />
+                <div class="q-pa-md">
+                  <div class="q-gutter-sm">
+                    <q-checkbox
+                      v-model="customModel"
+                      color="secondary"
+                      label="Do you agree with the terms & conditions?"
+                      true-value="yes"
+                      false-value="no"
+                    />
+                  </div>
+                </div>
                 <div class="row justify-center">
                   <q-btn
                     type="submit"
@@ -48,7 +59,7 @@
 import { ref } from "vue";
 import MyMap from "components/MyMap.vue";
 
-const test = ref("");
+const customModel = ref("no");
 const submitting = ref(false);
 
 const name = ref("");
