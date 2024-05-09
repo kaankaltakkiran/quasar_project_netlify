@@ -1,5 +1,11 @@
 <template>
   <q-page>
+    <div class="q-pa-md q-gutter-sm">
+      <q-breadcrumbs>
+        <q-breadcrumbs-el to="/" exact label="Ana Sayfa" />
+        <q-breadcrumbs-el to="/contact" label="İletişim" />
+      </q-breadcrumbs>
+    </div>
     <q-page-container class="q-gutter-md">
       <div class="q-pa-md example-column-mix-and-match">
         <div class="q-gutter-md">

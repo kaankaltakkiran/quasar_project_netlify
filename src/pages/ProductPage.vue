@@ -1,4 +1,10 @@
 <template>
+  <div class="q-pa-md q-gutter-sm">
+    <q-breadcrumbs>
+      <q-breadcrumbs-el to="/" exact label="Ana Sayfa" />
+      <q-breadcrumbs-el to="/prodcuts" label="Ürünler" />
+    </q-breadcrumbs>
+  </div>
   <h3 class="text-center text-red">Products</h3>
   <div class="q-pa-md row items-start q-gutter-md">
     <q-card

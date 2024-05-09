@@ -2,14 +2,17 @@
   <q-layout view="lHh Lpr lFf">
     <div>
       <q-toolbar class="bg-blue text-white shadow-2 rounded-borders">
-        <q-btn to="/" exact flat label="Homepage" />
+        <q-btn to="/" exact flat label="Ana Sayfa" />
         <q-space />
         <q-tabs v-model="tab" shrink>
-          <q-route-tab to="/" exact name="anasayfa" label="Anasayfa" />
+          <q-route-tab to="/" exact name="anasayfa" label="Ana Sayfa" />
           <q-route-tab to="/prodcuts" exact name="ürünler" label="Ürünler" />
           <q-route-tab to="/contact" exact name="iletişim" label="İletişim" />
           <q-route-tab to="/deneme" exact name="deneme" label="Deneme" />
         </q-tabs>
+        <q-btn dense color="purple" round icon="email" class="q-ml-md">
+          <q-badge color="red" floating>4</q-badge>
+        </q-btn>
       </q-toolbar>
     </div>
     <AppFooter />
@@ -22,6 +25,7 @@
       >
         <q-btn fab icon="keyboard_arrow_up" color="accent" />
       </q-page-scroller>
+
       <keep-alive>
         <router-view />
       </keep-alive>
