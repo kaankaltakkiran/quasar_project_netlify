@@ -2,7 +2,7 @@
   <h3 class="text-center text-blue">Quasar Vue 3 Example</h3>
   <div class="q-pa-md example-column-mix-and-match">
     <div class="q-gutter-md">
-      <div class="q-col col-6">
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6">
         <!-- Alert Section Start -->
         <div class="q-pa-md q-mx-auto" style="max-width: 600px">
           <q-list bordered class="rounded-borders">
@@ -112,7 +112,7 @@
       </div>
     </div>
     <div class="row justify-center">
-      <div class="col-6">
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6">
         <div class="q-pa-md">
           <q-stepper v-model="step" ref="stepper" color="primary" animated>
             <q-step
