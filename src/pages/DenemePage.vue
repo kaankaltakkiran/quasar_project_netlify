@@ -59,6 +59,60 @@
         </q-markup-table>
       </div>
     </div>
+    <div class="row justify-center">
+      <div class="col-6">
+        <h1 class="text-h2 text-red text-center">Loading Tables</h1>
+        <div class="q-pa-md">
+          <q-markup-table>
+            <thead>
+              <tr>
+                <th class="text-left" style="width: 150px">
+                  <q-skeleton animation="blink" type="text" />
+                </th>
+                <th class="text-right">
+                  <q-skeleton animation="blink" type="text" />
+                </th>
+                <th class="text-right">
+                  <q-skeleton animation="blink" type="text" />
+                </th>
+                <th class="text-right">
+                  <q-skeleton animation="blink" type="text" />
+                </th>
+                <th class="text-right">
+                  <q-skeleton animation="blink" type="text" />
+                </th>
+                <th class="text-right">
+                  <q-skeleton animation="blink" type="text" />
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr v-for="n in 5" :key="n">
+                <td class="text-left">
+                  <q-skeleton animation="blink" type="text" width="85px" />
+                </td>
+                <td class="text-right">
+                  <q-skeleton animation="blink" type="text" width="50px" />
+                </td>
+                <td class="text-right">
+                  <q-skeleton animation="blink" type="text" width="35px" />
+                </td>
+                <td class="text-right">
+                  <q-skeleton animation="blink" type="text" width="65px" />
+                </td>
+                <td class="text-right">
+                  <q-skeleton animation="blink" type="text" width="25px" />
+                </td>
+                <td class="text-right">
+                  <q-skeleton animation="blink" type="text" width="85px" />
+                </td>
+              </tr>
+            </tbody>
+          </q-markup-table>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
