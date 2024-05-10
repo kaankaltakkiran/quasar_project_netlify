@@ -176,6 +176,14 @@
                   color="negative"
                   class="q-mt-sm"
                 />
+                <div class="q-pa-lg">
+                  <q-option-group
+                    v-model="group"
+                    :options="options"
+                    color="green"
+                    type="checkbox"
+                  />
+                </div>
                 <div class="row justify-center">
                   <q-btn
                     type="submit"
@@ -257,6 +265,22 @@ function simulateSubmit() {
     submitting.value = false;
   }, 3000);
 }
+const group = ref(["op1"]);
+
+const options = [
+  {
+    label: "Haber Bültenine Abone Ol",
+    value: "op1",
+  },
+  {
+    label: "E-Posta Gönder",
+    value: "op2",
+  },
+  {
+    label: "SMS Gönder",
+    value: "op3",
+  },
+];
 </script>
 
 <style scoped>
