@@ -17,7 +17,53 @@
               <h2 class="text-center text-blue">Contact Page</h2>
               <q-form @submit.prevent="simulateSubmit">
                 <q-input v-model="name" label="Name" />
-                <q-input v-model="email" label="Email" type="email" />
+                <q-input
+                  class="q-mt-md"
+                  standout
+                  v-model="email"
+                  type="email"
+                  prefix="Email:"
+                  suffix="@gmail.com"
+                >
+                  <template v-slot:prepend>
+                    <q-icon name="mail" />
+                  </template>
+                </q-input>
+                <q-input
+                  class="q-mt-md"
+                  filled
+                  v-model="phone"
+                  label="Phone"
+                  mask="(###) ### - ####"
+                  fill-mask
+                  hint="Mask: (###) ### - ####"
+                />
+                <q-input
+                  class="q-mt-md"
+                  ref="inputRef"
+                  filled
+                  v-model="model"
+                  label="Maximum 3 characters"
+                  :rules="[
+                    (val) =>
+                      val.length <= 3 || 'Please use maximum 3 characters',
+                  ]"
+                />
+                <q-input
+                  class="q-mt-md"
+                  v-model="password"
+                  filled
+                  :type="isPwd ? 'password' : 'text'"
+                  hint="Password with toggle"
+                >
+                  <template v-slot:append>
+                    <q-icon
+                      :name="isPwd ? 'visibility_off' : 'visibility'"
+                      class="cursor-pointer"
+                      @click="isPwd = !isPwd"
+                    />
+                  </template>
+                </q-input>
                 <q-input v-model="message" label="Message" type="textarea" />
                 <div class="q-pa-md">
                   <div class="q-gutter-sm">
@@ -119,6 +165,9 @@ import MyMap from "components/MyMap.vue";
 
 /* Form Default Value */
 const hex = ref("#019A9D");
+const isPwd = ref(true);
+const password = ref("");
+const inputRef = ref(null);
 
 const customModel = ref("no");
 const submitting = ref(false);
