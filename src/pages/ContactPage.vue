@@ -128,6 +128,54 @@
 
                   <template v-slot:hint> Dosya Boyutu </template>
                 </q-file>
+                <q-knob
+                  show-value
+                  font-size="16px"
+                  class="text-red q-ma-md"
+                  v-model="volume"
+                  size="60px"
+                  :thickness="0.05"
+                  color="red"
+                  track-color="grey-3"
+                >
+                  <q-icon name="volume_up" class="q-mr-xs" />
+                  {{ volume }}
+                </q-knob>
+                <q-linear-progress indeterminate />
+
+                <q-linear-progress
+                  indeterminate
+                  color="warning"
+                  class="q-mt-sm"
+                />
+
+                <q-linear-progress
+                  indeterminate
+                  color="secondary"
+                  class="q-mt-sm"
+                />
+
+                <q-linear-progress
+                  indeterminate
+                  rounded
+                  color="accent"
+                  class="q-mt-sm"
+                />
+
+                <q-linear-progress
+                  indeterminate
+                  rounded
+                  track-color="orange"
+                  color="purple"
+                  class="q-mt-sm"
+                />
+
+                <q-linear-progress
+                  indeterminate
+                  rounded
+                  color="negative"
+                  class="q-mt-sm"
+                />
                 <div class="row justify-center">
                   <q-btn
                     type="submit"
@@ -168,8 +216,9 @@ const hex = ref("#019A9D");
 const isPwd = ref(true);
 const password = ref("");
 const inputRef = ref(null);
-
+const volume = ref(50);
 const customModel = ref("no");
+/* formda rules olduğu için submit direk çalışmıyor kurala uygun olmalı */
 const submitting = ref(false);
 const name = ref("");
 const email = ref("");
