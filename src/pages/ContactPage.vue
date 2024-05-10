@@ -213,6 +213,18 @@
       </div>
     </q-page-container>
   </q-page>
+  <div class="q-pa-lg flex flex-center">
+    <q-pagination
+      v-model="current"
+      :max="5"
+      direction-links
+      boundary-links
+      icon-first="skip_previous"
+      icon-last="skip_next"
+      icon-prev="fast_rewind"
+      icon-next="fast_forward"
+    />
+  </div>
 </template>
 
 <script setup>
@@ -221,6 +233,7 @@ import MyMap from "components/MyMap.vue";
 
 /* Form Default Value */
 const hex = ref("#019A9D");
+const current = ref(1);
 const isPwd = ref(true);
 const password = ref("");
 const inputRef = ref(null);
