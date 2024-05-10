@@ -1,6 +1,6 @@
 <template>
   <div class="row justify-center">
-    <div class="col-6">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6">
       <div class="q-px-lg q-py-md">
         <q-timeline :layout="layout" color="secondary">
           <q-timeline-entry heading>
@@ -136,10 +136,106 @@
       </div>
     </div>
   </div>
+  <div class="row justify-center">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+      <q-splitter v-model="treeModel" style="height: 400px">
+        <template v-slot:before>
+          <div class="q-pa-md">
+            <q-tree
+              :nodes="simple"
+              node-key="label"
+              selected-color="primary"
+              v-model:selected="selected"
+              default-expand-all
+            />
+          </div>
+        </template>
+
+        <template v-slot:after>
+          <q-tab-panels
+            v-model="selected"
+            animated
+            transition-prev="jump-up"
+            transition-next="jump-up"
+          >
+            <q-tab-panel name="Relax Hotel">
+              <div class="text-h4 q-mb-md">Welcome</div>
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
+                praesentium cumque magnam odio iure quidem, quod illum numquam
+                possimus obcaecati commodi minima assumenda consectetur culpa
+                fuga nulla ullam. In, libero.
+              </p>
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
+                praesentium cumque magnam odio iure quidem, quod illum numquam
+                possimus obcaecati commodi minima assumenda consectetur culpa
+                fuga nulla ullam. In, libero.
+              </p>
+            </q-tab-panel>
+
+            <q-tab-panel name="Food">
+              <div class="text-h4 q-mb-md">Food</div>
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
+                praesentium cumque magnam odio iure quidem, quod illum numquam
+                possimus obcaecati commodi minima assumenda consectetur culpa
+                fuga nulla ullam. In, libero.
+              </p>
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
+                praesentium cumque magnam odio iure quidem, quod illum numquam
+                possimus obcaecati commodi minima assumenda consectetur culpa
+                fuga nulla ullam. In, libero.
+              </p>
+            </q-tab-panel>
+
+            <q-tab-panel name="Room service">
+              <div class="text-h4 q-mb-md">Room service</div>
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
+                praesentium cumque magnam odio iure quidem, quod illum numquam
+                possimus obcaecati commodi minima assumenda consectetur culpa
+                fuga nulla ullam. In, libero.
+              </p>
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
+                praesentium cumque magnam odio iure quidem, quod illum numquam
+                possimus obcaecati commodi minima assumenda consectetur culpa
+                fuga nulla ullam. In, libero.
+              </p>
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
+                praesentium cumque magnam odio iure quidem, quod illum numquam
+                possimus obcaecati commodi minima assumenda consectetur culpa
+                fuga nulla ullam. In, libero.
+              </p>
+            </q-tab-panel>
+
+            <q-tab-panel name="Room view">
+              <div class="text-h4 q-mb-md">Room view</div>
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
+                praesentium cumque magnam odio iure quidem, quod illum numquam
+                possimus obcaecati commodi minima assumenda consectetur culpa
+                fuga nulla ullam. In, libero.
+              </p>
+              <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
+                praesentium cumque magnam odio iure quidem, quod illum numquam
+                possimus obcaecati commodi minima assumenda consectetur culpa
+                fuga nulla ullam. In, libero.
+              </p>
+            </q-tab-panel>
+          </q-tab-panels>
+        </template>
+      </q-splitter>
+    </div>
+  </div>
   <div class="q-pa-md">
     <h1 class="text-h2 text-blue text-center">Desserts</h1>
     <div class="row justify-center">
-      <div class="col-6">
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6">
         <q-markup-table dark class="bg-indigo-8">
           <thead>
             <tr>
@@ -197,7 +293,7 @@
       </div>
     </div>
     <div class="row justify-center">
-      <div class="col-6">
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6">
         <h1 class="text-h2 text-red text-center">Loading Tables</h1>
         <div class="q-pa-md">
           <q-markup-table>
@@ -251,7 +347,7 @@
       </div>
     </div>
     <div class="row justify-center">
-      <div class="col-6">
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6">
         <div class="q-pa-md q-gutter-xs">
           <div class="q-gutter-md row justify-center">
             <div>
@@ -349,7 +445,7 @@
   </div>
   <h1 class="text-h2 text-green text-center">Stepper</h1>
   <div class="row justify-center q-my-md">
-    <div class="col-6">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6">
       <q-card>
         <q-tabs
           v-model="tab"
@@ -469,4 +565,27 @@ const $q = useQuasar();
 const layout = computed(() => {
   return $q.screen.lt.sm ? "dense" : $q.screen.lt.md ? "comfortable" : "loose";
 });
+
+const treeModel = ref(50);
+const selected = ref("Food");
+
+const simple = [
+  {
+    label: "Relax Hotel",
+    children: [
+      {
+        label: "Food",
+        icon: "restaurant_menu",
+      },
+      {
+        label: "Room service",
+        icon: "room_service",
+      },
+      {
+        label: "Room view",
+        icon: "photo",
+      },
+    ],
+  },
+];
 </script>

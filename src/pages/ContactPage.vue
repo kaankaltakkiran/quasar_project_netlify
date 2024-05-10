@@ -120,6 +120,11 @@
                     />
                   </div>
                 </div>
+                <div class="q-pa-md">
+                  <div class="q-gutter-md">
+                    <q-time v-model="time" landscape />
+                  </div>
+                </div>
                 <q-file
                   filled
                   bottom-slots
@@ -260,6 +265,8 @@ const isPwd = ref(true);
 const password = ref("");
 const inputRef = ref(null);
 const volume = ref(50);
+const time = ref("10:56");
+const imeWithSeconds = ref("09:24:10");
 const customModel = ref("no");
 /* formda rules olduğu için submit direk çalışmıyor kurala uygun olmalı */
 const submitting = ref(false);
