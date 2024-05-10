@@ -49,6 +49,17 @@
                       val.length <= 3 || 'Please use maximum 3 characters',
                   ]"
                 />
+                <q-select
+                  class="q-mt-md"
+                  label="Flip up/down"
+                  transition-show="flip-up"
+                  transition-hide="flip-down"
+                  filled
+                  v-model="selectModel"
+                  :options="selectOptions"
+                  style="width: 250px"
+                />
+
                 <q-input
                   class="q-mt-md"
                   v-model="password"
@@ -96,6 +107,7 @@
                     class="my-picker"
                   />
                 </div>
+
                 <div class="q-pa-md">
                   <span class="text-h6 text-red">Pick a date:</span>
                   <div class="q-gutter-md">
@@ -184,6 +196,16 @@
                     type="checkbox"
                   />
                 </div>
+                <q-range
+                  class="q-mt-xl"
+                  v-model="modelRange"
+                  color="deep-orange"
+                  markers
+                  :marker-labels="fnMarkerLabel"
+                  :min="0"
+                  :max="6"
+                />
+
                 <div class="row justify-center">
                   <q-btn
                     type="submit"
@@ -294,6 +316,13 @@ const options = [
     value: "op3",
   },
 ];
+const modelRange = ref({
+  min: 2,
+  max: 4,
+});
+const fnMarkerLabel = (val) => `${10 * val}%`;
+const selectModel = ref("Google");
+const selectOptions = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
 </script>
 
 <style scoped>
