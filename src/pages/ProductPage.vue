@@ -203,12 +203,67 @@
       />
     </q-card>
   </div>
+  <!-- Loading Content Start -->
+  <div class="row justify-start">
+    <div class="col-md-3 col-sm-10 col-12">
+      <div class="q-pa-md q-gutter-md">
+        <q-btn color="amber" @click="showTextLoading">
+          Tıkla, Bekle ve Gör !!
+        </q-btn>
+
+        <q-card class="relative-position card-example" flat bordered>
+          <q-card-section class="q-pb-none">
+            <div class="text-h6">Lorem Ipsum</div>
+          </q-card-section>
+
+          <q-card-section>
+            <transition
+              appear
+              enter-active-class="animated fadeIn"
+              leave-active-class="animated fadeOut"
+            >
+              <div v-show="showSimulatedReturnData">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Praesent vel magna eu risus laoreet tristique. Nulla ut
+                fermentum elit, nec consequat augue. Morbi et dolor nec metus
+                tincidunt pellentesque. Nullam non semper ante. Fusce
+                pellentesque sagittis felis quis porta. Aenean condimentum neque
+                sed erat suscipit malesuada. Nulla eget rhoncus enim. Duis
+                dictum interdum eros.
+              </div>
+            </transition>
+          </q-card-section>
+
+          <q-inner-loading
+            :showing="visible"
+            label="Please wait..."
+            label-class="text-teal"
+            label-style="font-size: 1.1em"
+          />
+        </q-card>
+      </div>
+    </div>
+  </div>
+  <!-- Loading Content End -->
 </template>
 
 <script setup>
 import { ref } from "vue";
 const labelName = ref("Detaylı Bİlgi");
 const editorContent = ref("");
+/* Visible */
+const visible = ref(false);
+const showSimulatedReturnData = ref(false);
+
+const showTextLoading = () => {
+  visible.value = true;
+  showSimulatedReturnData.value = false;
+
+  setTimeout(() => {
+    visible.value = false;
+    showSimulatedReturnData.value = true;
+  }, 3000);
+};
 defineOptions({
   name: "ProductPage",
 });
