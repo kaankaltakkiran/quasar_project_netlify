@@ -59,6 +59,26 @@
                     />
                   </div>
                 </div>
+                <q-file
+                  filled
+                  bottom-slots
+                  v-model="model"
+                  label="File Upload"
+                  counter
+                >
+                  <template v-slot:prepend>
+                    <q-icon name="cloud_upload" @click.stop.prevent />
+                  </template>
+                  <template v-slot:append>
+                    <q-icon
+                      name="close"
+                      @click.stop.prevent="model = null"
+                      class="cursor-pointer"
+                    />
+                  </template>
+
+                  <template v-slot:hint> Dosya Boyutu </template>
+                </q-file>
                 <div class="row justify-center">
                   <q-btn
                     type="submit"
@@ -99,6 +119,8 @@ const submitting = ref(false);
 const name = ref("");
 const email = ref("");
 const message = ref("");
+
+const model = ref(null);
 
 defineOptions({
   name: "ContactPage",
