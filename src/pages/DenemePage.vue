@@ -113,7 +113,216 @@
         </div>
       </div>
     </div>
+    <div class="row justify-center">
+      <div class="col-6">
+        <div class="q-pa-md q-gutter-xs">
+          <div class="q-gutter-md row justify-center">
+            <div>
+              <q-spinner-audio color="primary" size="2em" />
+              <q-tooltip :offset="[0, 8]">QSpinnerAudio</q-tooltip>
+            </div>
+            <div>
+              <q-spinner-ball color="primary" size="2em" />
+              <q-tooltip :offset="[0, 8]">QSpinnerBall</q-tooltip>
+            </div>
+            <div>
+              <q-spinner-bars color="primary" size="2em" />
+              <q-tooltip :offset="[0, 8]">QSpinnerBars</q-tooltip>
+            </div>
+            <div>
+              <q-spinner-box color="primary" size="2em" />
+              <q-tooltip :offset="[0, 8]">QSpinnerBox</q-tooltip>
+            </div>
+            <div>
+              <q-spinner-clock color="primary" size="2em" />
+              <q-tooltip :offset="[0, 8]">QSpinnerClock</q-tooltip>
+            </div>
+            <div>
+              <q-spinner-comment color="primary" size="2em" />
+              <q-tooltip :offset="[0, 8]">QSpinnerComment</q-tooltip>
+            </div>
+            <div>
+              <q-spinner-cube color="primary" size="2em" />
+              <q-tooltip :offset="[0, 8]">QSpinnerCube</q-tooltip>
+            </div>
+            <div>
+              <q-spinner-dots color="primary" size="2em" />
+              <q-tooltip :offset="[0, 8]">QSpinnerDots</q-tooltip>
+            </div>
+            <div>
+              <q-spinner-facebook color="primary" size="2em" />
+              <q-tooltip :offset="[0, 8]">QSpinnerFacebook</q-tooltip>
+            </div>
+            <div>
+              <q-spinner-gears color="primary" size="2em" />
+              <q-tooltip :offset="[0, 8]">QSpinnerGears</q-tooltip>
+            </div>
+            <div>
+              <q-spinner-grid color="primary" size="2em" />
+              <q-tooltip :offset="[0, 8]">QSpinnerGrid</q-tooltip>
+            </div>
+            <div>
+              <q-spinner-hearts color="primary" size="2em" />
+              <q-tooltip :offset="[0, 8]">QSpinnerHearts</q-tooltip>
+            </div>
+            <div>
+              <q-spinner-hourglass color="primary" size="2em" />
+              <q-tooltip :offset="[0, 8]">QSpinnerHourglass</q-tooltip>
+            </div>
+            <div>
+              <q-spinner-infinity color="primary" size="2em" />
+              <q-tooltip :offset="[0, 8]">QSpinnerInfinity</q-tooltip>
+            </div>
+            <div>
+              <q-spinner-ios color="primary" size="2em" />
+              <q-tooltip :offset="[0, 8]">QSpinnerIos</q-tooltip>
+            </div>
+            <div>
+              <q-spinner-orbit color="primary" size="2em" />
+              <q-tooltip :offset="[0, 8]">QSpinnerOrbit</q-tooltip>
+            </div>
+            <div>
+              <q-spinner-oval color="primary" size="2em" />
+              <q-tooltip :offset="[0, 8]">QSpinnerOval</q-tooltip>
+            </div>
+            <div>
+              <q-spinner-pie color="primary" size="2em" />
+              <q-tooltip :offset="[0, 8]">QSpinnerPie</q-tooltip>
+            </div>
+            <div>
+              <q-spinner-puff color="primary" size="2em" />
+              <q-tooltip :offset="[0, 8]">QSpinnerPuff</q-tooltip>
+            </div>
+            <div>
+              <q-spinner-radio color="primary" size="2em" />
+              <q-tooltip :offset="[0, 8]">QSpinnerRadio</q-tooltip>
+            </div>
+            <div>
+              <q-spinner-rings color="primary" size="2em" />
+              <q-tooltip :offset="[0, 8]">QSpinnerRings</q-tooltip>
+            </div>
+            <div>
+              <q-spinner-tail color="primary" size="2em" />
+              <q-tooltip :offset="[0, 8]">QSpinnerTail</q-tooltip>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h1 class="text-h2 text-green text-center">Stepper</h1>
+  <div class="row justify-center q-my-md">
+    <div class="col-6">
+      <q-card>
+        <q-tabs
+          v-model="tab"
+          dense
+          class="text-grey"
+          active-color="primary"
+          indicator-color="primary"
+          align="justify"
+        >
+          <q-tab name="mails" label="Mails" />
+          <q-tab name="alarms" label="Alarms" />
+          <q-tab name="movies" label="Movies" />
+        </q-tabs>
+
+        <q-separator />
+
+        <q-tab-panels v-model="tab" animated>
+          <q-tab-panel name="mails" class="q-pa-none">
+            <q-splitter v-model="splitterModel" style="height: 250px">
+              <template v-slot:before>
+                <q-tabs v-model="innerTab" vertical class="text-teal">
+                  <q-tab name="innerMails" icon="mail" label="Mails" />
+                  <q-tab name="innerAlarms" icon="alarm" label="Alarms" />
+                  <q-tab name="innerMovies" icon="movie" label="Movies" />
+                </q-tabs>
+              </template>
+
+              <template v-slot:after>
+                <q-tab-panels
+                  v-model="innerTab"
+                  animated
+                  transition-prev="slide-down"
+                  transition-next="slide-up"
+                >
+                  <q-tab-panel name="innerMails">
+                    <div class="text-h4 q-mb-md">Mails</div>
+                    <p>
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                      Quis praesentium cumque magnam odio iure quidem, quod
+                      illum numquam possimus obcaecati commodi minima assumenda
+                      consectetur culpa fuga nulla ullam. In, libero.
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                      Quis praesentium cumque magnam odio iure quidem, quod
+                      illum numquam possimus obcaecati commodi minima assumenda
+                      consectetur culpa fuga nulla ullam. In, libero.
+                    </p>
+                  </q-tab-panel>
+
+                  <q-tab-panel name="innerAlarms">
+                    <div class="text-h4 q-mb-md">Alarms</div>
+                    <p>
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                      Quis praesentium cumque magnam odio iure quidem, quod
+                      illum numquam possimus obcaecati commodi minima assumenda
+                      consectetur culpa fuga nulla ullam. In, libero.
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                      Quis praesentium cumque magnam odio iure quidem, quod
+                      illum numquam possimus obcaecati commodi minima assumenda
+                      consectetur culpa fuga nulla ullam. In, libero.
+                    </p>
+                  </q-tab-panel>
+
+                  <q-tab-panel name="innerMovies">
+                    <div class="text-h4 q-mb-md">Movies</div>
+                    <p>
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                      Quis praesentium cumque magnam odio iure quidem, quod
+                      illum numquam possimus obcaecati commodi minima assumenda
+                      consectetur culpa fuga nulla ullam. In, libero.
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                      Quis praesentium cumque magnam odio iure quidem, quod
+                      illum numquam possimus obcaecati commodi minima assumenda
+                      consectetur culpa fuga nulla ullam. In, libero.
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                      Quis praesentium cumque magnam odio iure quidem, quod
+                      illum numquam possimus obcaecati commodi minima assumenda
+                      consectetur culpa fuga nulla ullam. In, libero.
+                    </p>
+                  </q-tab-panel>
+                </q-tab-panels>
+              </template>
+            </q-splitter>
+          </q-tab-panel>
+
+          <q-tab-panel name="alarms">
+            <div class="text-h6">Alarms</div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          </q-tab-panel>
+
+          <q-tab-panel name="movies">
+            <div class="text-h6">Movies</div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          </q-tab-panel>
+        </q-tab-panels>
+      </q-card>
+    </div>
   </div>
 </template>
+<script setup>
+import { ref } from "vue";
 
-<script setup></script>
+const tab = ref("mails");
+const innerTab = ref("innerMails");
+const splitterModel = ref(20);
+</script>
