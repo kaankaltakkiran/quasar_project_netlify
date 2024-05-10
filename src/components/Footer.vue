@@ -1,4 +1,5 @@
 <template>
+  <!-- Footer Start -->
   <q-footer class="q-pa-md q-gutter-sm" elevated>
     <div class="row justify-center items-center">
       <div class="text-center">
@@ -60,6 +61,7 @@
       </div>
     </div>
   </q-footer>
+  <!-- Footer End -->
 </template>
 
 <script setup>
@@ -69,13 +71,10 @@ defineOptions({
 </script>
 
 <style scoped>
-/* Stil düzenlemelerini burada yapabilirsiniz */
-
 .social-links a {
   color: #fff;
   margin-right: 10px;
 }
-
 .q-footer {
   position: absolute;
   bottom: 0;

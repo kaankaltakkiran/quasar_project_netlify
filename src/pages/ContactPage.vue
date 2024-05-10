@@ -1,16 +1,19 @@
 <template>
   <q-page>
+    <!-- Breadcrumbs Start -->
     <div class="q-pa-md q-gutter-sm">
       <q-breadcrumbs>
         <q-breadcrumbs-el to="/" exact label="Ana Sayfa" />
         <q-breadcrumbs-el to="/contact" label="İletişim" />
       </q-breadcrumbs>
+      <!-- Breadcrumbs End -->
     </div>
     <q-page-container class="q-gutter-md">
       <div class="q-pa-md example-column-mix-and-match">
         <div class="q-gutter-md">
           <div class="q-col col-6">
             <div class="q-pa-md q-mx-auto" style="max-width: 600px">
+              <!-- Contact Form Start -->
               <h2 class="text-center text-blue">Contact Page</h2>
               <q-form @submit.prevent="simulateSubmit">
                 <q-input v-model="name" label="Name" />
@@ -95,10 +98,13 @@
                   </q-btn>
                 </div>
               </q-form>
+              <!-- Contact Form End -->
               <p class="q-mt-md text-secondary text-h6">
                 Donanmacı, Otopark, 35580 Karşıyaka/İzmir
               </p>
-              <my-map />
+              <!-- Map Start -->
+              <MyMap />
+              <!-- Map End -->
             </div>
           </div>
         </div>
@@ -111,27 +117,15 @@
 import { ref } from "vue";
 import MyMap from "components/MyMap.vue";
 
+/* Form Default Value */
 const hex = ref("#019A9D");
 
 const customModel = ref("no");
 const submitting = ref(false);
-
 const name = ref("");
 const email = ref("");
 const message = ref("");
-
 const model = ref(null);
-
-defineOptions({
-  name: "ContactPage",
-});
-function simulateSubmit() {
-  submitting.value = true;
-
-  setTimeout(() => {
-    submitting.value = false;
-  }, 3000);
-}
 const date = ref("2019/02/01");
 const events = [
   "2019/02/01",
@@ -153,6 +147,18 @@ const eventsFn = (date) => {
   }
   return false;
 };
+
+defineOptions({
+  name: "ContactPage",
+});
+/* Form Submit */
+function simulateSubmit() {
+  submitting.value = true;
+
+  setTimeout(() => {
+    submitting.value = false;
+  }, 3000);
+}
 </script>
 
 <style scoped>

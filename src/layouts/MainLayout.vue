@@ -1,6 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <div>
+      <!--Navbar Menu Start-->
       <q-toolbar class="bg-blue text-white shadow-2 rounded-borders">
         <q-btn to="/" exact flat label="Ana Sayfa" />
         <q-space />
@@ -78,6 +79,7 @@
           </q-fab>
         </div>
       </q-toolbar>
+      <!--Navbar Menu End-->
     </div>
     <AppFooter />
     <q-page-container>
@@ -100,7 +102,8 @@
 <script setup>
 import { ref } from "vue";
 import AppFooter from "src/components/Footer.vue";
-const tab = ref("anasayfa");
+const tab = ref("anasayfa"); /* Default Tab */
+/* Default Value */
 const mobileData = ref(false);
 const bluetooth = ref(false);
 const fab2 = ref(false);

@@ -1,12 +1,16 @@
 <template>
   <div class="q-pa-md q-gutter-sm">
+    <!-- Breadcrumbs Start -->
     <q-breadcrumbs>
       <q-breadcrumbs-el to="/" exact label="Ana Sayfa" />
       <q-breadcrumbs-el to="/prodcuts" label="Ürünler" />
     </q-breadcrumbs>
+    <!-- Breadcrumbs End -->
   </div>
+  <!-- Product List Start -->
   <h3 class="text-center text-red">Products</h3>
   <div class="q-pa-md row items-start q-gutter-md">
+    <!-- Card İnfo Start -->
     <q-card
       class="my-card"
       flat
@@ -21,7 +25,7 @@
         <div class="text-h5 q-mt-sm q-mb-xs">{{ card.title }}</div>
         <div class="text-caption text-grey">{{ card.content }}</div>
       </q-card-section>
-
+      <!-- Card İnfo End -->
       <q-card-actions>
         <q-btn
           color="secondary"
@@ -202,6 +206,7 @@
         no-dimming
       />
     </q-card>
+    <!-- Product List End -->
   </div>
   <!-- Loading Content Start -->
   <div class="row justify-start">
@@ -249,6 +254,7 @@
 
 <script setup>
 import { ref } from "vue";
+/* Default Value */
 const labelName = ref("Detaylı Bİlgi");
 const editorContent = ref("");
 /* Visible */
@@ -267,6 +273,7 @@ const showTextLoading = () => {
 defineOptions({
   name: "ProductPage",
 });
+/* Define Card İnfo */
 const cards = ref([
   {
     image: "img/product_1.jpg",
@@ -343,7 +350,7 @@ const cards = ref([
     commentDialog: false,
   },
 ]);
-
+/* Dialog Settings */
 const openModal = (index) => {
   cards.value[index].backdropFilter = "blur(4px)";
   cards.value[index].dialog = true;

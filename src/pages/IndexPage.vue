@@ -3,6 +3,7 @@
   <div class="q-pa-md example-column-mix-and-match">
     <div class="q-gutter-md">
       <div class="q-col col-6">
+        <!-- Alert Section Start -->
         <div class="q-pa-md q-mx-auto" style="max-width: 600px">
           <q-list bordered class="rounded-borders">
             <q-expansion-item
@@ -106,9 +107,11 @@
               </q-card>
             </q-expansion-item>
           </q-list>
+          <!-- Alert Section End -->
         </div>
       </div>
     </div>
+    <!-- Web Site Comment Start -->
     <h3 class="text-center text-h4 text-red">Başlıca Site Yorumları</h3>
     <div class="row q-col-gutter-md">
       <div class="col-12 col-md-4">
@@ -180,7 +183,8 @@
         </div>
       </div>
     </div>
-
+    <!-- Web Site Comment End -->
+    <!-- Carousel Start -->
     <div class="q-pa-md">
       <q-carousel
         arrows
@@ -213,12 +217,14 @@
           </div>
         </q-carousel-slide>
       </q-carousel>
+      <!-- Carousel End -->
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
+/* Carousel Default Value */
 const loading = ref(false);
 const btnsize = ref("sm");
 const slide = ref("first");
