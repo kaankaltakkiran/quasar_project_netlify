@@ -24,10 +24,18 @@
 
       <q-card-actions>
         <q-btn
-          color="primary"
+          color="secondary"
+          icon-right="search"
           :label="labelName"
           no-caps
           @click="openModal(index)"
+        />
+        <q-btn
+          color="deep-orange"
+          icon-right="comment"
+          label="Yorum Yaz"
+          no-caps
+          @click="openDetailModal(index)"
         />
         <q-space />
         <q-btn
@@ -48,7 +56,7 @@
           </q-card-section>
         </div>
       </q-slide-transition>
-
+      <!--Detaylı Bilgi Dialog Start -->
       <q-dialog v-model="card.dialog" :backdrop-filter="card.backdropFilter">
         <q-card style="width: 700px; max-width: 80vw">
           <q-card-section class="row items-center q-pb-none text-h6 text-red">
@@ -71,6 +79,117 @@
           </q-card-actions>
         </q-card>
       </q-dialog>
+      <!--Detaylı Bilgi Dialog End -->
+      <!--Send Comment Start -->
+      <q-dialog v-model="card.commentDialog">
+        <q-card style="max-width: 80vw" class="q-pa-md q-gutter-sm">
+          <q-card-section>
+            <q-editor
+              v-model="card.editorContent"
+              :dense="$q.screen.lt.md"
+              :toolbar="[
+                [
+                  {
+                    label: $q.lang.editor.align,
+                    icon: $q.iconSet.editor.align,
+                    fixedLabel: true,
+                    list: 'only-icons',
+                    options: ['left', 'center', 'right', 'justify'],
+                  },
+                  {
+                    label: $q.lang.editor.align,
+                    icon: $q.iconSet.editor.align,
+                    fixedLabel: true,
+                    options: ['left', 'center', 'right', 'justify'],
+                  },
+                ],
+                [
+                  'bold',
+                  'italic',
+                  'strike',
+                  'underline',
+                  'subscript',
+                  'superscript',
+                ],
+                ['token', 'hr', 'link', 'custom_btn'],
+                ['print', 'fullscreen'],
+                [
+                  {
+                    label: $q.lang.editor.formatting,
+                    icon: $q.iconSet.editor.formatting,
+                    list: 'no-icons',
+                    options: ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'code'],
+                  },
+                  {
+                    label: $q.lang.editor.fontSize,
+                    icon: $q.iconSet.editor.fontSize,
+                    fixedLabel: true,
+                    fixedIcon: true,
+                    list: 'no-icons',
+                    options: [
+                      'size-1',
+                      'size-2',
+                      'size-3',
+                      'size-4',
+                      'size-5',
+                      'size-6',
+                      'size-7',
+                    ],
+                  },
+                  {
+                    label: $q.lang.editor.defaultFont,
+                    icon: $q.iconSet.editor.font,
+                    fixedIcon: true,
+                    list: 'no-icons',
+                    options: [
+                      'default_font',
+                      'arial',
+                      'arial_black',
+                      'comic_sans',
+                      'courier_new',
+                      'impact',
+                      'lucida_grande',
+                      'times_new_roman',
+                      'verdana',
+                    ],
+                  },
+                  'removeFormat',
+                ],
+                ['quote', 'unordered', 'ordered', 'outdent', 'indent'],
+                ['undo', 'redo'],
+                ['viewsource'],
+              ]"
+              :fonts="{
+                arial: 'Arial',
+                arial_black: 'Arial Black',
+                comic_sans: 'Comic Sans MS',
+                courier_new: 'Courier New',
+                impact: 'Impact',
+                lucida_grande: 'Lucida Grande',
+                times_new_roman: 'Times New Roman',
+                verdana: 'Verdana',
+              }"
+            />
+          </q-card-section>
+          <q-card-actions align="right">
+            <q-btn
+              flat
+              label="Close"
+              color="primary"
+              class="q-mr-sm"
+              @click="closeCommentModal(index)"
+            />
+            <q-btn
+              flat
+              label="Gönder"
+              color="primary"
+              @click="closeCommentModal(index)"
+            />
+          </q-card-actions>
+        </q-card>
+      </q-dialog>
+
+      <!--Send Comment End -->
       <!-- Rating component -->
       <q-rating
         v-model="card.rating"
@@ -89,6 +208,7 @@
 <script setup>
 import { ref } from "vue";
 const labelName = ref("Detaylı Bİlgi");
+const editorContent = ref("");
 defineOptions({
   name: "ProductPage",
 });
@@ -104,7 +224,9 @@ const cards = ref([
     backdropFilter: null,
     dialogTitle: "Dialog Title 1",
     dialogContent: "Dialog content for card 1",
-    rating: 0, // Initial rating value
+    rating: 0,
+    editorContent: "",
+    commentDialog: false,
   },
   {
     image: "img/product_2.jpg",
@@ -117,7 +239,9 @@ const cards = ref([
     backdropFilter: null,
     dialogTitle: "Dialog Title 2",
     dialogContent: "Dialog content for card 2",
-    rating: 0, // Initial rating value
+    rating: 0,
+    editorContent: "",
+    commentDialog: false,
   },
   {
     image: "img/product_3.jpg",
@@ -130,7 +254,9 @@ const cards = ref([
     backdropFilter: null,
     dialogTitle: "Dialog Title 3",
     dialogContent: "Dialog content for card 3",
-    rating: 0, // Initial rating value
+    rating: 0,
+    editorContent: "",
+    commentDialog: false,
   },
   {
     image: "img/product_4.jpg",
@@ -142,7 +268,9 @@ const cards = ref([
     backdropFilter: null,
     dialogTitle: "Dialog Title 4",
     dialogContent: "Dialog content for card 4",
-    rating: 0, // Initial rating value
+    rating: 0,
+    editorContent: "",
+    commentDialog: false,
   },
   {
     image: "img/product_5.jpg",
@@ -155,7 +283,9 @@ const cards = ref([
     backdropFilter: null,
     dialogTitle: "Dialog Title 5",
     dialogContent: "Dialog content for card 5",
-    rating: 0, // Initial rating value
+    rating: 0,
+    editorContent: "",
+    commentDialog: false,
   },
 ]);
 
@@ -169,8 +299,19 @@ const closeModal = (index) => {
   cards.value[index].dialog = false;
 };
 
+const closeCommentModal = (index) => {
+  cards.value[index].commentDialog = false;
+};
+
 const toggle = (index) => {
   cards.value[index].expanded = !cards.value[index].expanded;
+};
+// Her kart için düzenleyici içeriğini güncellemek için fonksiyon
+const updateEditorContent = (index, content) => {
+  cards.value[index].editorContent = content;
+};
+const openDetailModal = (index) => {
+  cards.value[index].commentDialog = true;
 };
 </script>
 
