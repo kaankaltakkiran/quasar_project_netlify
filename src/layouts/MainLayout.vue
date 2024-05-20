@@ -78,6 +78,25 @@
             />
           </q-fab>
         </div>
+        <q-btn
+          flat
+          dense
+          @click="$q.fullscreen.toggle()"
+          :icon="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
+          :label="$q.fullscreen.isActive ? 'TamEkran:Kapat' : 'TamEkran:Aç'"
+          :no-caps="true"
+          class="q-mr-sm"
+        />
+
+        <q-btn
+          flat
+          dense
+          @click="$q.dark.toggle()"
+          :icon="$q.dark.isActive ? 'light_mode' : 'dark_mode'"
+          :label="$q.dark.isActive ? 'Dark' : 'Light'"
+          :no-caps="true"
+          class="q-mr-sm"
+        />
       </q-toolbar>
       <!--Navbar Menu End-->
     </div>
