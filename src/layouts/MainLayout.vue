@@ -5,7 +5,7 @@
       <q-toolbar class="bg-blue text-white shadow-2 rounded-borders">
         <q-btn to="/" exact flat label="Ana Sayfa" />
         <q-space />
-        <q-tabs v-model="tab" shrink>
+        <q-tabs @click="showLoading" v-model="tab" shrink>
           <q-route-tab to="/" exact name="anasayfa" label="Ana Sayfa" />
           <q-route-tab to="/prodcuts" exact name="ürünler" label="Ürünler" />
           <q-route-tab to="/contact" exact name="iletişim" label="İletişim" />
@@ -97,6 +97,16 @@
           :no-caps="true"
           class="q-mr-sm"
         />
+
+        <q-btn
+          flat
+          dense
+          @click="showLoading"
+          icon="hourglass_empty"
+          label="Loading"
+          :no-caps="true"
+          class="q-mr-sm"
+        />
       </q-toolbar>
       <!--Navbar Menu End-->
     </div>
@@ -119,7 +129,8 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onBeforeUnmount } from "vue";
+import { useQuasar } from "quasar";
 import AppFooter from "src/components/Footer.vue";
 const tab = ref("anasayfa"); /* Default Tab */
 /* Default Value */
@@ -129,6 +140,28 @@ const fab2 = ref(false);
 defineOptions({
   name: "MainLayout",
 });
+const $q = useQuasar();
+let timer;
+onBeforeUnmount(() => {
+  if (timer !== void 0) {
+    clearTimeout(timer);
+    $q.loading.hide();
+  }
+});
+
+const showLoading = () => {
+  $q.loading.show({
+    message:
+      'Some important <b>process</b> is in progress.<br><span class="text-amber text-italic">Please wait...</span>',
+    html: true,
+  });
+
+  // hiding in 1s
+  timer = setTimeout(() => {
+    $q.loading.hide();
+    timer = void 0;
+  }, 1000);
+};
 </script>
 
 <style scoped>
