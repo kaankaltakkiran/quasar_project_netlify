@@ -210,7 +210,15 @@
                   :min="0"
                   :max="6"
                 />
-
+                <q-uploader
+                  url="http://localhost:4444/upload"
+                  label="Upload files"
+                  color="purple"
+                  square
+                  flat
+                  bordered
+                  style="max-width: 300px"
+                />
                 <div class="row justify-center">
                   <q-btn
                     type="submit"
