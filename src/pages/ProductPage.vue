@@ -248,6 +248,48 @@
         </q-card>
       </div>
     </div>
+    <div class="q-pa-md">
+      <h4 class="text-center text-red">Notification</h4>
+      <div class="row q-gutter-sm">
+        <q-btn
+          no-caps
+          unelevated
+          color="positive"
+          @click="triggerPositive"
+          label="Trigger 'positive'"
+        />
+        <q-btn
+          no-caps
+          unelevated
+          color="negative"
+          @click="triggerNegative"
+          label="Trigger 'negative'"
+        />
+        <q-btn
+          no-caps
+          unelevated
+          color="warning"
+          text-color="dark"
+          @click="triggerWarning"
+          label="Trigger 'warning'"
+        />
+        <q-btn
+          no-caps
+          unelevated
+          color="info"
+          @click="triggerInfo"
+          label="Trigger 'info'"
+        />
+        <q-btn
+          no-caps
+          unelevated
+          color="grey-8"
+          @click="triggerOngoing"
+          label="Trigger 'ongoing'"
+        />
+        <q-btn color="teal" @click="showNotif" label="Show Notification" />
+      </div>
+    </div>
   </div>
   <!-- Loading Content End -->
 </template>
@@ -374,6 +416,93 @@ const updateEditorContent = (index, content) => {
 };
 const openDetailModal = (index) => {
   cards.value[index].commentDialog = true;
+};
+import { useQuasar } from "quasar";
+
+const $q = useQuasar();
+const showNotif = () => {
+  const notif = $q.notify({
+    group: false, // required to be updatable
+    position: "top-right", // set the position to top-right
+    timeout: 0, // we want to be in control when it gets dismissed
+    spinner: true,
+    message: "Uploading file...",
+    caption: "0%",
+  });
+
+  // we simulate some progress here...
+  let percentage = 0;
+  const interval = setInterval(() => {
+    percentage = Math.min(100, percentage + Math.floor(Math.random() * 22));
+
+    // we update the dialog
+    notif({
+      caption: `${percentage}%`,
+    });
+
+    // if we are done...
+    if (percentage === 100) {
+      notif({
+        icon: "done", // we add an icon
+        position: "top-right", // set the position to top-right
+        spinner: false, // we reset the spinner setting so the icon can be displayed
+        message: "Uploading done!",
+        timeout: 2500, // we will timeout it in 2.5s
+      });
+      clearInterval(interval);
+    }
+  }, 500);
+};
+const triggerPositive = () => {
+  $q.notify({
+    type: "positive",
+    position: "top-right", // set the position to top-right
+    message: 'This is a "positive" type notification.',
+  });
+};
+
+const triggerNegative = () => {
+  $q.notify({
+    type: "negative",
+    position: "top-right", // set the position to top-right
+    message: 'This is a "negative" type notification.',
+  });
+};
+
+const triggerWarning = () => {
+  $q.notify({
+    type: "warning",
+    position: "top-right", // set the position to top-right
+    message: 'This is a "warning" type notification.',
+  });
+};
+
+const triggerInfo = () => {
+  $q.notify({
+    type: "info",
+    position: "top-right", // set the position to top-right
+    message: 'This is a "info" type notification.',
+  });
+};
+
+const triggerOngoing = () => {
+  // we need to get the notification reference
+  // otherwise it will never get dismissed ('ongoing' type has timeout 0)
+  const notif = $q.notify({
+    type: "ongoing",
+    position: "top-right", // set the position to top-right
+    message: "Looking up the search terms...",
+  });
+
+  // simulate delay
+  setTimeout(() => {
+    notif({
+      type: "positive",
+      position: "top-right", // set the position to top-right
+      message: "Found the results that you were looking for",
+      timeout: 1000,
+    });
+  }, 4000);
 };
 </script>
 
