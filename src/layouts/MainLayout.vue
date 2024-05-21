@@ -26,6 +26,7 @@
           <q-route-tab to="/prodcuts" exact name="ürünler" label="Ürünler" />
           <q-route-tab to="/contact" exact name="iletişim" label="İletişim" />
           <q-route-tab to="/deneme" exact name="deneme" label="Deneme" />
+          <q-route-tab to="/posts" exact name="posts" label="Post" />
           <q-route-tab to="/persons" exact name="person" label="Person" />
         </q-tabs>
         <q-btn dense color="purple" round icon="email" class="q-ml-md">
