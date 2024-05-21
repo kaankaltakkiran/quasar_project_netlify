@@ -3,7 +3,23 @@
     <div>
       <!--Navbar Menu Start-->
       <q-toolbar class="bg-blue text-white shadow-2 rounded-borders">
-        <q-btn to="/" exact flat label="Ana Sayfa" />
+        <a
+          href="/"
+          class="router-link-active router-link-exact-active doc-header__logo row items-center no-wrap cursor-pointer"
+          aria-current="page"
+          ><img
+            class="doc-header__logo-img"
+            src="https://cdn.quasar.dev/logo-v2/svg/logo-dark.svg"
+            alt="Quasar Logo"
+            width="48"
+            height="48" /><img
+            class="doc-header__logo-text q-ml-md"
+            src="https://cdn.quasar.dev/logo-v2/svg/logotype-dark.svg"
+            alt="Quasar Logo"
+            width="150"
+            height="20"
+        /></a>
+
         <q-space />
         <q-tabs @click="showLoading" v-model="tab" shrink>
           <q-route-tab to="/" exact name="anasayfa" label="Ana Sayfa" />
