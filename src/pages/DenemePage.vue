@@ -561,6 +561,18 @@
       </div>
     </div>
   </div>
+  <div class="row justify-center q-my-md">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+      <div class="q-pa-md q-gutter-sm">
+        <q-btn
+          label="Uplaod Video"
+          color="deep-orange"
+          icon-right="send"
+          @click="showCustom"
+        />
+      </div>
+    </div>
+  </div>
   <div
     class="q-pa-md relative-position"
     style="height: 280px; max-height: 80vh"
@@ -618,7 +630,7 @@
 </template>
 <script setup>
 import { ref, computed } from "vue";
-import { useQuasar } from "quasar";
+import { useQuasar, QSpinnerGears } from "quasar";
 
 const tab = ref("mails");
 const innerTab = ref("innerMails");
@@ -663,5 +675,42 @@ const morphGroupModel = ref("btn");
 
 function nextMorph() {
   morphGroupModel.value = nextMorphStep[morphGroupModel.value];
+}
+
+function showCustom() {
+  const dialog = $q.dialog({
+    title: "Uploading Video...",
+    dark: true,
+    message: "0%",
+    progress: {
+      spinner: QSpinnerGears,
+      color: "amber",
+    },
+    persistent: true, // we want the user to not be able to close it
+    ok: false, // we want the user to not be able to close it
+  });
+
+  // we simulate some progress here...
+  let percentage = 0;
+  const interval = setInterval(() => {
+    percentage = Math.min(100, percentage + Math.floor(Math.random() * 22));
+
+    // we update the dialog
+    dialog.update({
+      message: `${percentage}%`,
+    });
+
+    // if we are done...
+    if (percentage === 100) {
+      clearInterval(interval);
+
+      dialog.update({
+        title: "Done!",
+        message: "Video upload completed successfully !",
+        progress: false,
+        ok: true,
+      });
+    }
+  }, 500);
 }
 </script>
