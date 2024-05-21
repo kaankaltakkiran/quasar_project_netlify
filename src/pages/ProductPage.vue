@@ -292,10 +292,56 @@
     </div>
   </div>
   <!-- Loading Content End -->
+  <div class="row justify-center q-my-md">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+      <div class="q-pa-md">
+        <div
+          class="fixed-full image-gallery__blinder bg-grey-8"
+          :class="
+            indexZoomed !== void 0 ? 'image-gallery__blinder--active' : void 0
+          "
+          @click="zoomImage()"
+        />
+
+        <div
+          class="row justify-center q-gutter-sm q-mx-auto scroll relative-position"
+          style="max-width: 80vw; max-height: 80vh"
+        >
+          <q-img
+            v-for="(src, index) in images"
+            :key="index"
+            :ref="
+              (el) => {
+                thumbRef[index] = el;
+              }
+            "
+            class="image-gallery__image"
+            :style="index === indexZoomed ? 'opacity: 0.3' : void 0"
+            :src="src"
+            @click="zoomImage(index)"
+          />
+        </div>
+
+        <q-img
+          ref="fullRef"
+          class="image-gallery__image image-gallery__image-full fixed-center"
+          :class="
+            indexZoomed !== void 0
+              ? 'image-gallery__image-full--active'
+              : void 0
+          "
+          :src="images[indexZoomed]"
+          @load="imgLoadedResolve"
+          @error="imgLoadedReject"
+          @click="zoomImage()"
+        />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onBeforeUpdate } from "vue";
 /* Default Value */
 const labelName = ref("Detaylı Bİlgi");
 const editorContent = ref("");
@@ -504,10 +550,133 @@ const triggerOngoing = () => {
     });
   }, 4000);
 };
+import { morph } from "quasar";
+
+const thumbRef = ref([]);
+const fullRef = ref(null);
+
+const indexZoomed = ref(undefined);
+const images = ref(
+  Array(24)
+    .fill(null)
+    .map((_, i) => "https://picsum.photos/id/" + i + "/500/300")
+);
+const imgLoaded = {
+  promise: Promise.resolve(),
+  resolve: () => {},
+  reject: () => {},
+};
+
+function imgLoadedResolve() {
+  imgLoaded.resolve();
+}
+
+function imgLoadedReject() {
+  imgLoaded.reject();
+}
+
+function zoomImage(index) {
+  const indexZoomedState = indexZoomed.value;
+  let cancel = undefined;
+
+  imgLoaded.reject();
+
+  const zoom = () => {
+    if (index !== undefined && index !== indexZoomedState) {
+      imgLoaded.promise = new Promise((resolve, reject) => {
+        imgLoaded.resolve = () => {
+          imgLoaded.resolve = () => {};
+          imgLoaded.reject = () => {};
+
+          resolve();
+        };
+        imgLoaded.reject = () => {
+          imgLoaded.resolve = () => {};
+          imgLoaded.reject = () => {};
+
+          reject();
+        };
+      });
+
+      cancel = morph({
+        from: thumbRef.value[index].$el,
+        to: fullRef.value.$el,
+        onToggle: () => {
+          indexZoomed.value = index;
+        },
+        waitFor: imgLoaded.promise,
+        duration: 400,
+        hideFromClone: true,
+        onEnd: (end) => {
+          if (end === "from" && indexZoomed.value === index) {
+            indexZoomed.value = undefined;
+          }
+        },
+      });
+    }
+  };
+
+  if (
+    indexZoomedState !== undefined &&
+    (cancel === undefined || cancel() === false)
+  ) {
+    morph({
+      from: fullRef.value.$el,
+      to: thumbRef.value[indexZoomedState].$el,
+      onToggle: () => {
+        indexZoomed.value = undefined;
+      },
+      duration: 200,
+      keepToClone: true,
+      onEnd: zoom,
+    });
+  } else {
+    zoom();
+  }
+}
+
+// Reset dynamic refs before each update.
+onBeforeUpdate(() => {
+  thumbRef.value = [];
+});
 </script>
 
-<style lang="sass" scoped>
-.my-card
-  width: 100%
-  max-width: 350px
+<style scoped>
+.my-card {
+  width: 100%;
+  max-width: 350px;
+}
+.image-gallery__image {
+  border-radius: 3% / 5%;
+  width: 150px;
+  max-width: 20vw;
+  cursor: pointer;
+}
+
+.image-gallery__image-full {
+  width: 800px;
+  max-width: 70vw;
+  z-index: 2002;
+  pointer-events: none;
+}
+
+.image-gallery__image-full--active {
+  pointer-events: all;
+}
+
+.image-gallery__blinder {
+  opacity: 0;
+  z-index: 2000;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.image-gallery__blinder--active {
+  opacity: 0.6;
+  pointer-events: all;
+}
+
+.image-gallery__blinder--active + div > .image-gallery__image {
+  z-index: 2001;
+}
 </style>
