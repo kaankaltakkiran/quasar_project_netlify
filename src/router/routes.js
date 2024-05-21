@@ -8,6 +8,11 @@ const routes = [
       { path: "contact", component: () => import("pages/ContactPage.vue") },
       { path: "deneme", component: () => import("pages/DenemePage.vue") },
       { path: "persons", component: () => import("pages/PersonPage.vue") },
+      {
+        path: "/persons/:id",
+        component: () => import("pages/UniqePerson.vue"),
+        props: true,
+      },
       { path: "posts", component: () => import("pages/PostPage.vue") },
     ],
   },

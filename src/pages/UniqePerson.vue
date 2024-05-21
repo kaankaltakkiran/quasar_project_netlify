@@ -1,24 +1,19 @@
 <template>
   <div class="row justify-center q-my-md">
     <div class="col-12 col-sm-10 col-md-8 col-lg-6">
-      <h2 class="text-center text-red">Person List</h2>
+      <h2 class="text-center text-red">{{ userName }}</h2>
       <q-page>
         <q-card class="q-mt-md">
           <q-card-section>
             <q-table
               flat
               bordered
-              title="Person List"
+              title="Person Details"
               :rows="users"
               :columns="columns"
               color="primary"
               row-key="id"
             >
-              <template v-slot:body-cell-name="props">
-                <router-link :to="'/persons/' + props.row.id">{{
-                  props.row.name
-                }}</router-link>
-              </template>
               <template v-slot:top-right>
                 <q-btn
                   color="primary"
@@ -38,15 +33,27 @@
 
 <script setup>
 import { useUserStore } from "src/stores/userStore";
-import { computed, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import { exportFile, useQuasar } from "quasar";
-// storedan gelen verileri almak için
-const userStore = useUserStore();
-const users = computed(() => userStore.users);
+import { useRoute } from "vue-router";
 
+const userStore = useUserStore();
+const users = ref([]);
+const route = useRoute();
 const $q = useQuasar();
+const userName = ref("");
+
+onMounted(async () => {
+  await userStore.fetchUsers(); // tüm kullanıcıları getirir
+  const userId = route.params.id;
+  const user = userStore.users.find((user) => user.id === parseInt(userId)); // id'si eşleşen kullanıcıyı getirir
+  if (user) {
+    users.value.push(user);
+    userName.value = user.name;
+  }
+});
+
 // tablo kolonları tanımlanır
-//name ve field alanları eşleşmelidir
 const columns = [
   {
     name: "id",
@@ -81,38 +88,21 @@ const columns = [
     sortable: true,
   },
 ];
-// mounted fonksiyonu ile sayfa yüklendiğinde userStore içerisindeki fetchUsers fonksiyonu çalıştırılır
-onMounted(() => {
-  userStore.fetchUsers();
-});
 
-function wrapCsvValue(val, formatFn, row) {
-  let formatted = formatFn !== void 0 ? formatFn(val, row) : val;
-
-  formatted =
-    formatted === void 0 || formatted === null ? "" : String(formatted);
-
+function wrapCsvValue(val) {
+  let formatted = val === void 0 || val === null ? "" : String(val);
   formatted = formatted.split('"').join('""');
   return `"${formatted}"`;
 }
 
 function exportTable() {
-  const content = [columns.map((col) => wrapCsvValue(col.label))]
-    .concat(
-      users.value.map((row) =>
-        columns
-          .map((col) =>
-            wrapCsvValue(
-              typeof col.field === "function"
-                ? col.field(row)
-                : row[col.field === void 0 ? col.name : col.field],
-              col.format,
-              row
-            )
-          )
-          .join(",")
-      )
-    )
+  const content = [
+    columns.map((col) => wrapCsvValue(col.label)).join(","),
+    ...users.value.map((row) =>
+      columns.map((col) => wrapCsvValue(row[col.field]))
+    ),
+  ]
+    .map((row) => row.join(","))
     .join("\r\n");
 
   const status = exportFile("table-export.csv", content, "text/csv");
