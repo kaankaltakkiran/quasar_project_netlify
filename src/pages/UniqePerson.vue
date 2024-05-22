@@ -41,7 +41,7 @@ const userStore = useUserStore();
 const users = ref([]);
 const route = useRoute();
 const $q = useQuasar();
-const userName = ref("");
+const userName = ref(""); // kullanıcının adını tutar
 
 onMounted(async () => {
   await userStore.fetchUsers(); // tüm kullanıcıları getirir
@@ -49,7 +49,7 @@ onMounted(async () => {
   const user = userStore.users.find((user) => user.id === parseInt(userId)); // id'si eşleşen kullanıcıyı getirir
   if (user) {
     users.value.push(user);
-    userName.value = user.name;
+    userName.value = user.name; // kullanıcının adını set eder
   }
 });
 

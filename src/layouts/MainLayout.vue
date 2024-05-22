@@ -101,7 +101,7 @@
           dense
           @click="$q.fullscreen.toggle()"
           :icon="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
-          :label="$q.fullscreen.isActive ? 'TamEkran:Kapat' : 'TamEkran:Aç'"
+          :label="$q.fullscreen.isActive ? 'Exit FullScreen' : ' Go FullScreen'"
           :no-caps="true"
           class="q-mr-sm"
         />
