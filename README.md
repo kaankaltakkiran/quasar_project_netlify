@@ -1,6 +1,6 @@
 # Quasar App (quasar-example)
 
-web site canlı link [Web site link](https://quasarproducts.netlify.app/)
+[Web site link](https://quasarproducts.netlify.app/)
 
 A Quasar Project
 
