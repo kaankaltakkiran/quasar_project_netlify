@@ -159,6 +159,7 @@ defineOptions({
   name: "MainLayout",
 });
 const $q = useQuasar();
+$q.addressbarColor.set("#a2e3fa"); /* Address Bar Color */
 let timer;
 onBeforeUnmount(() => {
   if (timer !== void 0) {
